@@ -25,6 +25,12 @@ for fp in FONT_CANDIDATES:
     if os.path.exists(fp):
         try:
             pdfmetrics.registerFont(TTFont(FONT_NAME, fp))
+            pdfmetrics.registerFont(TTFont(FONT_NAME + "-Bold", fp))
+            from reportlab.lib.fonts import addMapping
+            addMapping(FONT_NAME, 0, 0, FONT_NAME)
+            addMapping(FONT_NAME, 1, 0, FONT_NAME + "-Bold")
+            addMapping(FONT_NAME, 0, 1, FONT_NAME)
+            addMapping(FONT_NAME, 1, 1, FONT_NAME + "-Bold")
             break
         except Exception:
             continue
