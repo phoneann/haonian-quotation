@@ -46,6 +46,7 @@ def make_doc_number(date_str: str, seq: int) -> str:
     return f"{roc:03d}{int(m):02d}{int(d):02d}{seq:02d}"
 
 def calc_subtotal(qty_str, price_str):
+    """能算就算，數量為文字（如「1批」）則回傳空字串"""
     try:
         q = float(str(qty_str).replace(",","").strip())
         p = float(str(price_str).replace(",","").strip())
@@ -57,6 +58,7 @@ def build_pdf(data: dict, output_path: str):
     customer   = data["customer"]
     image_path = data.get("image_path", "")
     items      = data["items"]
+    remarks    = data.get("remarks", "").strip()
 
     seq = int(customer["seq"]) if str(customer["seq"]).isdigit() else 1
     doc_num = make_doc_number(customer["date"], seq)
@@ -170,6 +172,24 @@ def build_pdf(data: dict, output_path: str):
 
     for line in [COMPANY["tel"],COMPANY["fax"],COMPANY["email"],COMPANY["address"]]:
         elements.append(P(line, size=9))
+
+    # 交易條件備註
+    if remarks:
+        elements.append(Spacer(1,3*mm))
+        remarks_data = [[P("交易條件", align="CENTER"), P(remarks)]]
+        remarks_table = Table(remarks_data, colWidths=[W*0.2, W*0.8])
+        remarks_table.setStyle(TableStyle([
+            ("FONTNAME",  (0,0), (-1,-1), FONT_NAME),
+            ("FONTSIZE",  (0,0), (-1,-1), 9),
+            ("BOX",       (0,0), (-1,-1), 0.5, colors.black),
+            ("INNERGRID", (0,0), (-1,-1), 0.5, colors.lightgrey),
+            ("BACKGROUND",(0,0), (0,-1),  colors.HexColor("#DDDDDD")),
+            ("VALIGN",    (0,0), (-1,-1), "MIDDLE"),
+            ("TOPPADDING",(0,0), (-1,-1), 4),
+            ("BOTTOMPADDING",(0,0),(-1,-1), 4),
+        ]))
+        elements.append(remarks_table)
+
     elements.append(Spacer(1,6*mm))
 
     sign_t = Table([[P(f"承辦人：{COMPANY['handler']}",align="CENTER"), P("廠商回覆：")]],

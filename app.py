@@ -152,10 +152,10 @@ for gi, g in enumerate(groups):
         if g.get("img_tmp") and os.path.exists(g["img_tmp"]):
             st.image(g["img_tmp"], width=180)
 
-        st.caption("數量 ／ 單價 ／ 備註")
+        st.caption("數量（數字或文字如「1批」） ／ 單價 ／ 備註")
         for ri, row in enumerate(g["rows"]):
             rc = st.columns([2,2,4,1])
-            row["qty"]   = rc[0].text_input("數量",  row["qty"],  key=f"qty_{gi}_{ri}",   label_visibility="collapsed")
+            row["qty"]   = rc[0].text_input("數量",  row["qty"],  key=f"qty_{gi}_{ri}",   label_visibility="collapsed", placeholder="10000 或 1批")
             row["price"] = rc[1].text_input("單價",  row["price"],key=f"price_{gi}_{ri}",  label_visibility="collapsed")
             row["note"]  = rc[2].text_input("備註",  row["note"], key=f"note_{gi}_{ri}",   label_visibility="collapsed")
             if ri > 0:
@@ -176,9 +176,24 @@ if st.button("＋ 新增產品"):
 st.markdown("---")
 
 # ══════════════════════════════════════════
-# ③ 產出
+# ③ 交易條件備註
 # ══════════════════════════════════════════
-st.subheader("③ 產出")
+st.subheader("③ 交易條件備註")
+if "remarks" not in st.session_state:
+    st.session_state.remarks = ""
+st.session_state.remarks = st.text_area(
+    "填寫交期、付款條件等（會顯示在報價單底部）",
+    st.session_state.remarks,
+    placeholder="例：交期：接單後一個月內出貨。付款條件：月結30天。",
+    height=100,
+)
+
+st.markdown("---")
+
+# ══════════════════════════════════════════
+# ④ 產出
+# ══════════════════════════════════════════
+st.subheader("④ 產出")
 customer_data = {k: str(v) for k,v in c.items()}
 date_tag = c["date"].replace("/","").replace("-","")[2:]
 out_name = f"{c['name']}_報價單_{date_tag}"
@@ -202,7 +217,7 @@ with col_pdf:
             tmp_pdf = tempfile.NamedTemporaryFile(suffix=".pdf", delete=False)
             tmp_pdf.close()
             try:
-                build_pdf({"customer":customer_data,"image_path":"","items":all_items}, tmp_pdf.name)
+                build_pdf({"customer":customer_data,"image_path":"","items":all_items,"remarks":st.session_state.remarks}, tmp_pdf.name)
                 pdf_bytes = open(tmp_pdf.name,"rb").read()
                 os.unlink(tmp_pdf.name)
                 st.session_state["pdf_bytes"] = pdf_bytes
