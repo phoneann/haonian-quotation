@@ -47,7 +47,9 @@ def make_doc_number(date_str: str, seq: int) -> str:
 
 def calc_subtotal(qty_str, price_str):
     try:
-        return int(float(qty_str) * float(price_str))
+        q = float(str(qty_str).replace(",","").strip())
+        p = float(str(price_str).replace(",","").strip())
+        return int(q * p)
     except Exception:
         return ""
 

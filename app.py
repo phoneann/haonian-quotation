@@ -49,8 +49,10 @@ def export_excel(customer, groups):
         for row in g["rows"]:
             if g["name"].strip() or row["qty"].strip():
                 ws.cell(r,1,g["name"])
-                ws.cell(r,2,float(row["qty"])   if row["qty"]   else "")
-                ws.cell(r,3,float(row["price"])  if row["price"] else "")
+                try: ws.cell(r,2, float(str(row["qty"]).replace(",","").strip()))
+                except: ws.cell(r,2, str(row["qty"]))
+                try: ws.cell(r,3, float(str(row["price"]).replace(",","").strip()))
+                except: ws.cell(r,3, str(row["price"]))
                 ws.cell(r,4,row["note"]); r+=1
     buf = io.BytesIO(); wb.save(buf); buf.seek(0)
     return buf.read()
