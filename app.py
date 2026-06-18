@@ -8,8 +8,84 @@ from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 from pdf_generator import build_pdf, make_doc_number
 
-st.set_page_config(page_title="好年報價單產生器", page_icon="📄", layout="centered")
+st.set_page_config(
+    page_title="好年報價單產生器",
+    page_icon="📄",
+    layout="centered",
+    initial_sidebar_state="collapsed",
+)
 st.title("📄 好年企業 報價單產生器")
+
+# ══════════════════════════════════════════
+# 手機版 CSS 優化
+# ══════════════════════════════════════════
+st.markdown("""
+<style>
+/* 防止 iOS / Android 自動放大輸入框 */
+input, textarea, select {
+    font-size: 16px !important;
+}
+
+/* 所有按鈕：觸控友好最小高度 */
+.stButton > button {
+    min-height: 48px !important;
+    font-size: 15px !important;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ── 手機（≤640px）── */
+@media (max-width: 640px) {
+    /* 縮減頁面邊距，讓內容更寬 */
+    .main .block-container,
+    [data-testid="stMainBlockContainer"] {
+        padding-left: 0.6rem !important;
+        padding-right: 0.6rem !important;
+        padding-top: 0.5rem !important;
+        max-width: 100% !important;
+    }
+
+    /* 所有 st.columns() 在手機上垂直堆疊 */
+    [data-testid="stHorizontalBlock"] {
+        flex-direction: column !important;
+        gap: 0 !important;
+    }
+    [data-testid="stHorizontalBlock"] > div[data-testid="stColumn"],
+    [data-testid="stHorizontalBlock"] > [data-testid="column"] {
+        width: 100% !important;
+        flex: none !important;
+        min-width: 100% !important;
+    }
+
+    /* 標題字級縮小 */
+    h1 { font-size: 1.35rem !important; line-height: 1.4 !important; }
+    h2, h3 { font-size: 1.1rem !important; }
+
+    /* 圖片不超出螢幕 */
+    img { max-width: 100% !important; height: auto !important; }
+
+    /* 刪除按鈕（🗑️ / ✕）不要因垂直堆疊顯得太寬 */
+    [data-testid="stHorizontalBlock"] > div[data-testid="stColumn"]:last-child .stButton > button {
+        min-height: 44px !important;
+        width: 100% !important;
+    }
+
+    /* container border 內距 */
+    [data-testid="stVerticalBlockBorderWrapper"] {
+        padding: 0.5rem !important;
+    }
+}
+
+/* ── 平板（641–768px）── */
+@media (min-width: 641px) and (max-width: 768px) {
+    .main .block-container,
+    [data-testid="stMainBlockContainer"] {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
 
 # ══════════════════════════════════════════
 # 工具函式
