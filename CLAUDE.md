@@ -84,6 +84,7 @@
 ## 重要提醒（所有AI工具都要遵守，不只Claude）
 - 程式碼改完一定要 push 到 `main`，Streamlit Cloud 才會自動更新
 - 每次進新 session，開工前一定要先讀這份 CLAUDE.md（Codex/Gemini 是透過 AGENTS.md / GEMINI.md 被導引過來讀這份），快速回到狀況
+- **每次進新session（不管手機還是桌機），開工時要主動用 `add_repo` 把 `phoneann/guagua-brain` 接進來，讀最新的「每日回顧.md」，才能真的知道桌機/其他工具最近做過什麼——不用等主人問「你知道我做了什麼嗎」才做**。這是Claude Code專屬能力（透過 `add_repo`/`register_repo_root`），如果所在的工具沒有這個能力，至少要提醒主人這條路徑存在
 - **每次工作session結束前，不用主人開口提醒，AI要主動在上面「AI協作日誌」新增一行紀錄，然後commit + push**。這是預設行為，不是主人要求才做的事
 - 如果這次對話沒有實際commit/push任何東西（純聊天、討論），也要照樣在日誌補一行文字紀錄「聊了什麼」，這樣手機/桌機才不會互相看不到彼此做過的事
 - 提醒主人：AGENTS.md、GEMINI.md 只是指向這份檔案的入口，實際內容只維護這一份 CLAUDE.md，避免三份資料兜不起來
