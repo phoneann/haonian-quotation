@@ -20,6 +20,7 @@
 - **這個repo（haonian-quotation報價單App）目前還沒被登記進母體的路由表**，所以桌機在那個Drive vault環境裡工作的紀錄，不會自動出現在這裡；反過來，這裡發生的事也不會自動出現在母體
 - 這份 `CLAUDE.md` 只服務「有人直接在這個repo資料夾工作」的情境，是輕量版的專案記憶，**不是**完整的呱呱大腦，內容也不會跟Drive那份同步——重複資訊只會造成兩邊兜不起來，所以不把母體內容整份搬過來
 - 母體CLAUDE.md路由表要補一行指到這個repo，才能真正打通（見下方待辦）
+- **真正能跨裝置同步的捷徑**：母體的「每日回顧」（`~/guagua-brain/每日回顧.md`）不是放在沒有版本控制的Drive資料夾裡，它本身就是獨立的git repo `phoneann/guagua-brain`，桌機每天23:30自動push。任何一個Claude Code session（不管手機還是桌機）只要用 `add_repo` 把 `phoneann/guagua-brain` 接進來，就能直接讀寫這份每日回顧，看到彼此真正做過的事——這比土法煉鋼複製貼上、或指望路由表可靠得多。如果又碰到「手機看不到桌機在做什麼」，先試這條路
 
 ## 主人的習慣與狀況
 - 常用手機跟我對話
@@ -78,6 +79,7 @@
 
 - 2026-08-03 [Claude/手機] 討論跨工具（Claude/Codex/Gemini）同步記憶的機制，建立本日誌區塊 + AGENTS.md / GEMINI.md 指向檔
 - 2026-08-03 [Claude/手機] 主人分享Drive「呱呱的大腦」母體CLAUDE.md內容，確認這是更完整的桌機端多AI協作系統（獨立於這個repo），本repo尚未登記進母體路由表；補上「與母體的關係」說明段落，並把待辦改成請主人去母體路由表補登這個repo
+- 2026-08-03 [Claude/手機] 找到真正同步路徑：`~/guagua-brain`（每日回顧）本身就是獨立git repo並自動push GitHub，跟Drive大腦資料夾是兩回事；已用add_repo接進本session，直接寫回一筆今天的每日回顧，手機端第一次真正打通桌機記錄，並把這個捷徑記進CLAUDE.md
 
 ## 重要提醒（所有AI工具都要遵守，不只Claude）
 - 程式碼改完一定要 push 到 `main`，Streamlit Cloud 才會自動更新
