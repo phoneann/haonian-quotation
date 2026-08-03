@@ -65,7 +65,15 @@
 - [ ] 補充「有情天」是什麼會議，記錄進大腦
 - [ ] 把Google雲端呱呱大腦內容合併進這份CLAUDE.md（回桌機做）
 
-## 重要提醒
+## AI協作日誌（跨工具同步，手機/桌機、Claude/Codex/Gemini 共用）
+> 這份日誌是所有AI工具的共同記憶。不管主人用手機還是桌機、叫的是 Claude、Codex 還是 Gemini，只要是在這個repo裡工作，都要讀這裡拿最新狀況，也都要往這裡寫。
+> 格式：`- YYYY-MM-DD HH:MM [工具/裝置] 做了什麼`
+
+- 2026-08-03 [Claude/手機] 討論跨工具（Claude/Codex/Gemini）同步記憶的機制，建立本日誌區塊 + AGENTS.md / GEMINI.md 指向檔
+
+## 重要提醒（所有AI工具都要遵守，不只Claude）
 - 程式碼改完一定要 push 到 `main`，Streamlit Cloud 才會自動更新
-- 呱呱每次進新 session 都會先讀這個檔案，快速回到狀況
-- 每次對話結束說「呱呱更新大腦」，我會把重點更新進來
+- 每次進新 session，開工前一定要先讀這份 CLAUDE.md（Codex/Gemini 是透過 AGENTS.md / GEMINI.md 被導引過來讀這份），快速回到狀況
+- **每次工作session結束前，不用主人開口提醒，AI要主動在上面「AI協作日誌」新增一行紀錄，然後commit + push**。這是預設行為，不是主人要求才做的事
+- 如果這次對話沒有實際commit/push任何東西（純聊天、討論），也要照樣在日誌補一行文字紀錄「聊了什麼」，這樣手機/桌機才不會互相看不到彼此做過的事
+- 提醒主人：AGENTS.md、GEMINI.md 只是指向這份檔案的入口，實際內容只維護這一份 CLAUDE.md，避免三份資料兜不起來
