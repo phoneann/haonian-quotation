@@ -80,6 +80,7 @@
 - 2026-08-03 [Claude/手機] 討論跨工具（Claude/Codex/Gemini）同步記憶的機制，建立本日誌區塊 + AGENTS.md / GEMINI.md 指向檔
 - 2026-08-03 [Claude/手機] 主人分享Drive「呱呱的大腦」母體CLAUDE.md內容，確認這是更完整的桌機端多AI協作系統（獨立於這個repo），本repo尚未登記進母體路由表；補上「與母體的關係」說明段落，並把待辦改成請主人去母體路由表補登這個repo
 - 2026-08-03 [Claude/手機] 找到真正同步路徑：`~/guagua-brain`（每日回顧）本身就是獨立git repo並自動push GitHub，跟Drive大腦資料夾是兩回事；已用add_repo接進本session，直接寫回一筆今天的每日回顧，手機端第一次真正打通桌機記錄，並把這個捷徑記進CLAUDE.md
+- 2026-11-02 [Claude/雲端session] 主人要求查「小書辦公室」ISS-0ETDDE／XSC-F43315AB30985E5A4D7B／ISS-NBNEX8／TSK-QA1KGW：本session**沒有小書辦公室MCP連線**，只能唯讀旁證（Google Drive＋guagua-brain每日回顧）。ISS-0ETDDE與XSC-F43315AB…在Drive全文與guagua-brain皆查無，無法確認內容，未假裝已讀；TSK-QA1KGW與10/31〈M5完整歷程與故障交接報告〉可讀。俊麟1101錄音：Drive只找到〈俊麟1101-3〉語者版逐字稿（約27分，內容為呱哥訪談俊麟報價流程）＋回聽用6秒mp3樣本，其餘段落與原音檔在桌機，未能讀取；本session無音訊轉寫能力。未改程式、未部署、未變更權限。
 
 ## 重要提醒（所有AI工具都要遵守，不只Claude）
 - 程式碼改完一定要 push 到 `main`，Streamlit Cloud 才會自動更新
